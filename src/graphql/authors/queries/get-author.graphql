@@ -1,0 +1,10 @@
+query GetAuthorById($id: ID!) {
+  author(where: { id: $id }) {
+    id
+    name
+    bio
+    photo {
+      url
+    }
+  }
+}

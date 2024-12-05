@@ -1,0 +1,44 @@
+{
+  "name": "node-workspace",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "features": {
+    "ghcr.io/devcontainers/features/git:1":{},
+    "ghcr.io/devcontainers/features/github-cli:1":{},
+    "ghcr.io/devcontainers/features/node:1":{}
+  },
+  "forwardPorts": [5173],
+  "postCreateCommand": ". ${NVM_DIR}/nvm.sh && nvm install --lts",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        // base
+        "files.eol": "\n",
+        // formatting
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "[yaml]": {
+          "editor.defaultFormatter": "redhat.vscode-yaml"
+        }
+      },
+      "extensions": [
+        // util
+        "ms-vscode.live-server",
+        "ms-vsliveshare.vsliveshare",
+        "esbenp.prettier-vscode",
+        "streetsidesoftware.code-spell-checker",
+        "oderwat.indent-rainbow",
+        "mosapride.zenkaku",
+        "ritwickdey.LiveServer",
+        "redhat.vscode-yaml",
+        "yzhang.markdown-all-in-one",
+        "bierner.markdown-mermaid",
+        // node
+        "dbaeumer.vscode-eslint",
+        "Swellaby.node-pack",
+        // git/github
+        "mhutchie.git-graph",
+        "GitHub.vscode-pull-request-github",
+        "GitHub.vscode-github-actions"
+      ]
+    }
+  }
+}

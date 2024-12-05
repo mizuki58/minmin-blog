@@ -1,0 +1,116 @@
+query GetPosts {
+  posts(orderBy: createdAt_DESC) {
+    id
+    title
+    excerpt
+    slug
+    createdAt
+    language
+    tags {
+      ... on Tag {
+        id
+        name
+        slug
+      }
+    }
+  }
+}
+
+query GetPostsWithLimit($first: Int) {
+  posts(orderBy: createdAt_DESC, first: $first) {
+    id
+    title
+    excerpt
+    slug
+    createdAt
+    tags {
+      ... on Tag {
+        id
+        name
+        slug
+      }
+    }
+    language
+  }
+}
+
+query GetPostsAndCount($skip: Int, $first: Int) {
+  posts(orderBy: createdAt_DESC, skip: $skip, first: $first) {
+    id
+    title
+    excerpt
+    slug
+    createdAt
+    tags {
+      ... on Tag {
+        id
+        name
+        slug
+      }
+    }
+    language
+  }
+  postsConnection {
+    aggregate {
+      count
+    }
+  }
+}
+
+query GetPostsWithSearch($skip: Int, $first: Int, $searchTerm: String) {
+  posts(
+    orderBy: createdAt_DESC
+    skip: $skip
+    first: $first
+    where: {
+      OR: [
+        { title_contains: $searchTerm }
+        { excerpt_contains: $searchTerm }
+        { tags_some: { Tag: { name: $searchTerm } } }
+      ]
+    }
+  ) {
+    id
+    title
+    excerpt
+    slug
+    createdAt
+    tags {
+      ... on Tag {
+        id
+        name
+        slug
+      }
+    }
+    language
+  }
+  postsConnection {
+    aggregate {
+      count
+    }
+  }
+}
+
+query GetPostsByTagSlug($slug: String!) {
+  posts(
+    orderBy: createdAt_DESC
+    where: { tags_some: { Tag: { slug: $slug } } }
+  ) {
+    id
+    title
+    excerpt
+    slug
+    createdAt
+    tags {
+      ... on Tag {
+        id
+        name
+        slug
+      }
+    }
+    language
+  }
+  tag(where: { slug: $slug }) {
+    name
+  }
+}

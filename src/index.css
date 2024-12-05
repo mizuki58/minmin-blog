@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .toc {
+      @apply  text-base;
+    }
+  
+    .toc-level {
+      @apply list-disc pl-4 my-2;
+    }
+
+    .toc-item {
+      @apply mb-2;
+    }
+  
+    .toc-item a {
+      @apply font-bold text-emerald-400 hover:text-emerald-800 no-underline;
+    }
+  }

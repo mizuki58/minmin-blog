@@ -1,0 +1,25 @@
+query GetPostBySlug($slug: String!) {
+  post(where: { slug: $slug }) {
+    author {
+      id
+      name
+      photo {
+        url
+      }
+    }
+    createdAt
+    id
+    slug
+    tags {
+      ... on Tag {
+        id
+        name
+        slug
+      }
+    }
+    title
+    content
+    language
+  }
+}
+
